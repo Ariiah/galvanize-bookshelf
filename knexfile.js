@@ -1,9 +1,26 @@
 'use strict';
 
 module.exports = {
-  development: {},
+  development: {
+    client: 'postgresql',
+    connection: 'postgres://localhost/bookshelf_dev'
+    // migrations: {
+    //   directory: './galvanize-bookshelf',
+    //   tableName: 'g_bookshelf'
+    // }
+  },
 
-  test: {},
+  test: {
+    client: 'postgresql',
+    connection: 'postgres://localhost/bookshelf_test'
+  }
 
-  production: {}
-};
+  // production: {
+  //   client: 'postgresql',
+  //   connection: process.env.DATABASE_URL,
+  //   migrations: {
+  //     directory: './bookshelf',
+  //     tableName: 'bookshelf'
+  //   }
+  // }
+}
