@@ -42,7 +42,6 @@ router.patch('/:id', (q, s, next) => {
   knex('books')
     .where('id', q.params.id)
     .limit(1)
-    // .first()
     .update(humps.decamelizeKeys(q.body))
     .returning('*')
     .then((newInfo) => s.json(humps.camelizeKeys(newInfo[0])))
