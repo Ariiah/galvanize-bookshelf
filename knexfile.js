@@ -13,7 +13,7 @@ module.exports = {
   test: {
     client: 'postgresql',
     connection: 'postgres://localhost/bookshelf_test'
-  }
+  },
 
   production: {
     client: 'postgresql',
