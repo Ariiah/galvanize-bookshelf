@@ -15,12 +15,8 @@ module.exports = {
     connection: 'postgres://localhost/bookshelf_test'
   }
 
-  // production: {
-  //   client: 'postgresql',
-  //   connection: process.env.DATABASE_URL,
-  //   migrations: {
-  //     directory: './bookshelf',
-  //     tableName: 'bookshelf'
-  //   }
-  // }
+  production: {
+    client: 'postgresql',
+    connection: process.env.DATABASE_URL
+  }
 }
