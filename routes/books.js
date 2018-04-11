@@ -12,9 +12,6 @@ router.get('/', (q, s, next) => {
     .orderBy('title', 'asc')
     .then((allEntries) => allEntries.map(keyEntries => humps.camelizeKeys(keyEntries)))
     .then((returnCamel) => s.json(returnCamel))
-    // .catch((err) => {
-    //   next(err)
-    // })
 })
 
 router.get('/:id', (q, s, next) => {
@@ -54,9 +51,7 @@ router.delete('/:id', (q, s, next) => {
     .returning('*')
     .then((idDeleted) => {
       let [origObj] = idDeleted
-      // ^^^ array destructoring
       delete origObj.id
-      // object has now changed/mutated
       s.json(humps.camelizeKeys(origObj))
     })
 })

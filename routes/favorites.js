@@ -7,11 +7,9 @@ const knex = require('../knex')
 const jwt = require('jsonwebtoken')
 
 const authenticated = (q, s, next) => {
-  // console.log(q);
   if (q.cookies.token) {
     jwt.verify(q.cookies.token, process.env.JWT_KEY, (err, payload) => {
       if (err) next (err)
-      // console.log('payload?', payload);
       q.token = payload
     })
   } else {
@@ -58,14 +56,13 @@ router.post('/', authenticated, (q, s, next) => {
     .returning('*')
     .then((newFav) => s.json(humps.camelizeKeys(newFav[0])))
 })
-// BAD BAD BAD BAD BAD TEST CASE - MATTHEW B.
+
 router.delete('/', authenticated, (q, s, next) => {
   const { bookId } = q.body
   knex('favorites')
     .where('book_id', bookId)
     .del()
     .returning('*')
-    // takes away the brackets
     .then((favDeleted) => {
       let [oldObj] = favDeleted
       delete oldObj.id

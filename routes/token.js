@@ -10,8 +10,6 @@ const KEY = process.env.JWT_KEY
 
 router.get('/', (q, s, next) => {
   if (q.cookies.token) {
-    // const decode = jwt.decode(q.cookies.token)
-    // console.log(decode)
     s.send(true)
   }
   else {
