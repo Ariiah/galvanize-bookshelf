@@ -20,18 +20,23 @@ router.get('/', (q, s, next) => {
 // sign-in route
 
 router.post('/', (q, s, next) => {
+  console.log('here! (first line)');
   knex('users')
     .select('*')
     .where('email', q.body.email)
     .first()
     .then((foundUser) => {
+      console.log('Before if', foundUser);
       if (foundUser){
+        console.log('After if');
         const {id, first_name, last_name, email, hashed_password} = foundUser
-
         bcrypt.compare(q.body.password, hashed_password, (err, result) => {
+          console.log('inside bcrypt');
           if (err) {
+            console.log('Err', err);
             s.status(401).json('not authorized')
             } else {
+            console.log('Result', result);
             if(result) {
               const loggedInUser = {id, first_name, last_name, email}
               const token = jwt.sign(loggedInUser, KEY)
