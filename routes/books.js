@@ -17,7 +17,7 @@ router.get('/', (q, s, next) => {
 router.get('/:id', (q, s, next) => {
   knex('books')
     .select('*')
-    .where('id', 1)
+    .where('id', q.params.id)
     .first()
     .then((firstEntry) => s.json(humps.camelizeKeys(firstEntry)))
 })

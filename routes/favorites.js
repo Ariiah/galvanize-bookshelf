@@ -31,6 +31,7 @@ router.get('/', authenticated, (q, s, next) => {
 })
 
 router.get('/check', authenticated, (q, s, next) => {
+  console.log(q.query);
   knex('favorites')
   .where('book_id', q.query.bookId)
   .join('books', 'favorites.book_id', 'books.id')
